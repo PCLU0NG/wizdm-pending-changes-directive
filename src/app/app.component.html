@@ -1,0 +1,59 @@
+<mat-toolbar fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="space-between center">
+
+  <a mat-icon-button (click)="snav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </a>
+
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <a mat-button *ngFor="let item of menuItems" routerLinkActive="link-active" [routerLink]="item.link">
+      {{ item.label }}
+    </a>
+  </div>
+
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+<mat-sidenav-container fxFlex="1 1 auto" fxLayout="column">
+
+  <mat-sidenav mode="over" #snav>
+
+    <mat-nav-list fxLayout="column" fxLayoutAlign="center center">
+       <a mat-button *ngFor="let item of menuItems" routerLinkActive="link-active" [routerLink]="item.link">
+        Go to {{ item.label }}
+      </a>
+    </mat-nav-list>
+  
+  </mat-sidenav>  
+    
+  <mat-sidenav-content fxFlex="1 1 auto" fxLayout="column">
+    
+    <div fxFlex="1 1 auto">
+      <router-outlet></router-outlet>
+    </div>
+    
+    <mat-divider></mat-divider>
+
+    <footer fxFlex="0 0 auto"  fxLayout="row">
+
+      <span class="mat-small">wizdm ©2019</span>
+    
+    </footer>
+  
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<!-- Popup Dialog activated while routing to '/popup' -->
+<wm-dialog wmActionLink="popup" (activate)="popup.open($event)" #popup>
+
+  <h2 mat-dialog-title><b>ActionLink Worked!</b></h2>
+
+  <mat-dialog-content class="text-justify">
+    This popup dialog openend while navigating to '/popup' thanks to the <i>ActionLinkObserver</i> intercepting the routing request and the <i>ActionLinkDirective</i> acting upon it.
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button color="primary" mat-dialog-close>Ok</button>
+  </mat-dialog-actions>
+
+</wm-dialog>

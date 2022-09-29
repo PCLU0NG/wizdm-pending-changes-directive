@@ -1,0 +1,43 @@
+@import '~@angular/material/theming';
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-amber);
+$warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($primary, $accent, $warn);
+
+// Defines an additional mat-link class to decorate links diviating
+// from the strict rules of material design for the sake of clarity
+.mat-link {
+  cursor: pointer;
+  color: mat-color($primary);
+  text-decoration: underline;
+  //&:hover { text-decoration: underline; }
+}
+
+.mat-select-hide-underline .mat-form-field-underline {
+  display: none;
+}
+@mixin init-application-theme() {
+
+  // Includes the core theme indepeneted material style
+  @include mat-core();
+
+  // Include all the material theme styles
+  @include angular-material-theme($app-theme);
+
+  // Adds custom application specific style extensions
+  a { @extend .mat-link; }
+
+  // Applies material typography rules globally
+  body {
+    @extend .mat-typography;
+
+    // Removes the margin
+    margin: 0;
+  }
+}

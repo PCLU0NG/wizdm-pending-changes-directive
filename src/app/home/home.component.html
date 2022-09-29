@@ -1,0 +1,10 @@
+
+<h1>Home</h1>
+<p>Pick a button...</p>
+
+<section fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="24px">
+
+  <button mat-mini-fab color="primary"[wmRedirect]="item.link" *ngFor="let item of links">
+    <wm-icon [icon]="item.icon"></wm-icon>
+  </button>
+</section>

@@ -1,0 +1,35 @@
+
+<h1>About</h1>
+
+<p>There are multiple options available...</p>
+
+<a routerLink="/redirect" [queryParams]="{ url: 'https://angular.io'}">
+  Redirects declaratively using the routerLink directive
+</a>
+
+<a href="https://fake-angular.io" (click)="router.navigateByUrl('/external?url=https://angular.io');false">
+  Redirects imperatively using the Router
+</a>
+
+<a wmRedirect="https://angular.io">Redirects declaratively using wmRedirect</a>
+
+<a wmRedirect="/home?redirected=true">&lt;&lt; Back to home using wmRedirect</a>
+
+<mat-slide-toggle class="slide" color="primary" #slide>{{ slide.checked ? 'Prevent leaving' : 'Allow leaving' }}</mat-slide-toggle>
+
+<!-- CanLeave Popup Dialog (based on MatDialog) -->
+<wm-dialog [(dontLeave)]="slide.checked" [disableClose]="true" #canLeave>
+
+  <h2 mat-dialog-title><b>Unsaved changes</b></h2>
+
+  <mat-dialog-content>
+    You're about to leave the page without saving the latest changes.<br>Please confirm.
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button color="primary" [mat-dialog-close]="false" cdkFocusInitial>Stay</button>
+    <button mat-button color="accent" (click)="doSomething(canLeave.ref)">Do something</button>
+    <button mat-button color="warn" [mat-dialog-close]="true">Leave anyhow</button>
+  </mat-dialog-actions>
+
+</wm-dialog>
